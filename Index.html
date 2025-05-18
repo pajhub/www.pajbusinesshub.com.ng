@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PAJ Business Hub</title>
+  <style>
+    /* Reset & base */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    a {
+      text-decoration: none;
+      color: #007bff;
+    }
+    a:hover {
+      color: #0056b3;
+    }
+
+    /* Navigation */
+    header {
+      background: #004080;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+    }
+    nav .logo {
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.4rem;
+      letter-spacing: 2px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    nav ul li a {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+      color: #ffcc00;
+    }
+
+    /* Hero Section */
+    #hero {
+      background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+      height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      padding: 0 1rem;
+    }
+    #hero .content {
+      background-color: rgba(0,0,0,0.5);
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 700px;
+    }
+    #hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      letter-spacing: 3px;
+    }
+    #hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    #hero .btn {
+      background-color: #ffcc00;
+      color: #004080;
+      font-weight: 700;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+    }
+    #hero .btn:hover {
+      background-color: #e6b800;
+    }
+
+    /* Sections common */
+    section {
+      padding: 4rem 1rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    section h2 {
+      font-size: 2.5rem;
+      color: #004080;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      letter-spacing: 2px;
+    }
+    section p {
+      max-width: 900px;
+      margin: 0 auto 2rem auto;
+      font-size: 1.125rem;
+      color: #444;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    /* About */
+    #about ul {
+      list-style: none;
+      max-width: 800px;
+      margin: 2rem auto 0 auto;
+      padding-left: 0;
+    }
+    #about ul li {
+      background: #e6f0ff;
+      margin-bottom: 1rem;
+      padding: 1rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      color: #004080;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    /* Services Section */
+    #services .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 2rem auto 0 auto;
+    }
+    #services .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    #services .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+    #services .card h3 {
+      margin-bottom: 1rem;
+      color: #004080;
+    }
+    #services .card p {
+      color: #555;
+      font-size: 1rem;
+    }
+
+    /* Programs Section */
+    #programs .program-list {
+      max-width: 900px;
+      margin: 2rem auto 0 auto;
+    }
+    #programs .program-item {
+      background: #f0f8ff;
+      border-left: 5px solid #004080;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+      font-weight: 600;
+      color: #004080;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #programs .program-item button {
+      background-color: #ffcc00;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      color: #004080;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    #programs .program-item button:hover {
+      background-color: #e6b800;
+    }
+
+    /* Testimonials Section */
+    #testimonials .testimonial {
+      max-width: 800px;
+      margin: 2rem auto 0 auto;
+      font-style: italic;
+      color: #555;
+      border-left: 4px solid #004080;
+      padding-left: 1rem;
+      position: relative;
+      background: #fefefe;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+      border-radius: 4px;
+    }
+    #testimonials .testimonial::before {
+      content: '“';
+      font-size: 3rem;
+      color: #004080;
+      position: absolute;
+      left: 10px;
+      top: -10px;
+      font-weight: bold;
+    }
+    #testimonials .author {
+      margin-top: 0.75rem;
+      text-align: right;
+      font-weight: 700;
+      color: #004080;
+    }
+
+    /* Contact Section */
+    #contact {
+      max-width: 600px;
+      text-align: center;
+      margin: 0 auto;
+    }
+    #contact .info {
+      margin-bottom: 1.5rem;
+      font-size: 1.125rem;
+      color: #004080;
+    }
+    #contact .social-icons {
+      margin-top: 1rem;
+    }
+    #contact .social-icons a {
+      display: inline-block;
+      margin: 0 0.75rem;
+      font-size: 1.8rem;
+      color: #004080;
+      transition: color 0.3s ease;
+    }
+    #contact .social-icons a:hover {
+      color: #ffcc00;
+    }
+
+    /* Footer */
+    footer {
+      background: #004080;
+      color: white;
+      text-align: center;
+      padding: 1rem 1rem;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      margin-top: 4rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      #hero h1 {
+        font-size: 2rem;
+      }
+      #hero p {
+        font-size: 1rem;
+      }
+      nav ul {
+        gap: 1rem;
+      }
+    }
+  </style>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <!-- Navigation -->
+  <header>
+    <nav>
+      <div class="logo">PAJ Business Hub</div>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="content" role="banner">
+      <h1>Empowering Entrepreneurs Across Africa</h1>
+      <p>Your success is our mission at PAJ Business Hub. Join us and transform your business dreams into reality.</p>
+      <a href="#contact" class="btn" role="button">Join Us</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" aria-labelledby="about-title">
+    <h2 id="about-title">About Us</h2>
+    <p>PAJ Business Hub is dedicated to fostering entrepreneurship by providing resources, mentorship, and a supportive community for aspiring business owners.</p>
+    <ul>
+      <li><strong>Vision:</strong> To be the leading business education hub in Africa.</li>
+      <li><strong>Mission:</strong> To educate and empower entrepreneurs for success.</li>
+      <li><strong>Core Values:</strong> Integrity, Innovation, Impact, Inclusion.</li>
+      <li><strong>Goals:</strong> To provide accessible training, build networks, and create opportunities.</li>
+    </ul>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" aria-labelledby="services-title">
+    <h2 id="services-title">Our Services</h2>
+    <div class="cards" role="list">
+      <article class="card" role="listitem">
+        <h3>Business Training</h3>
+        <p>Comprehensive courses to develop your skills and knowledge.</p>
+      </article>
+      <article class="card" role="listitem">
+        <h3>Mentorship Programs</h3>
+        <p>Connect with experienced entrepreneurs and business experts.</p>
+      </article>
+      <article class="card" role="listitem">
+        <h3>Networking Opportunities</h3>
+        <p>Events and meetups to grow your professional network.</p>
+      </article>
+      <article class="card" role="listitem">
+        <h3>Startup Resources</h3>
+        <p>Access to tools, templates, and funding
